@@ -27,5 +27,14 @@ public class ATMfiap {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             return dataHora.format(formatter);
         }
+        public String toString(){   //metodo para exibir a transaçao formatada
+            String sinal = tipo.equals("DEPOSITO") ?"+" : "-";  //setta o sinal de valor (+ para deposito e - para saque)
+            return String.format("%-10s %s R$ %8.2f %s",    //retorna as strings formatadas co tipo, volr e data/hora 
+                tipo, sinal, valor, getDataHotaFormatada());
+        }
+        // metodo getter para acessar os atributos
+        public String getTipo(){return  tipo;}
+        public double getValor(){return valor;}
+        public LocalDateTime getDataHora(){return dataHora;}
     }
 }
