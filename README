@@ -1,0 +1,295 @@
+DOCUMENTAÇÃO TÉCNICA
+SISTEMA ATM FIAP - AUTOMAÇÃO BANCÁRIA
+
+
+ÍNDICE
+--------------------------------------------------------------------------------
+
+1.  DESCRIÇÃO DO PROJETO
+2.  FUNCIONALIDADES
+3.  TECNOLOGIAS UTILIZADAS
+4.  ESTRUTURA DO PROJETO
+6.  GUIA DE USO
+7.  RECURSOS DE SEGURANÇA
+8.  CARACTERÍSTICAS TÉCNICAS
+10. CONTRIBUIÇÃO
+
+================================================================================
+1. DESCRIÇÃO DO PROJETO
+================================================================================
+
+O ATM FIAP é um sistema de automação bancária desenvolvido em Java que simula 
+as funcionalidades básicas de um caixa eletrônico. O projeto foi desenvolvido 
+como parte de um desafio de programação, com foco em boas práticas de código, 
+segurança básica e experiência do usuário.
+
+O sistema oferece uma interface intuitiva com efeitos visuais de digitação e 
+limpeza de tela, proporcionando uma experiência mais próxima de um sistema 
+bancário real.
+
+================================================================================
+2. FUNCIONALIDADES
+================================================================================
+O sistema contempla as seguintes funcionalidades:
+
+   - Cadastro de Usuário
+        * Sistema de boas-vindas personalizado com nome do cliente
+        * Validação de entrada de dados
+
+   - Gerenciamento de Senha
+        * Validação de senha forte com requisitos mínimos
+        * Sistema de autenticação com 3 tentativas
+        * Bloqueio de acesso após tentativas excedidas
+
+   - Operações Bancárias
+        * Consulta de saldo em tempo real
+        * Depósitos com validação de valores positivos
+        * Saques com controle de saldo disponível
+
+   - Histórico de Transações (Diferencial do Projeto)
+        * Funcionalidade implementada adicionalmente para tornar o sistema 
+          mais realista e próximo de um caixa eletrônico tradicional
+        * Registro automático de todas as movimentações realizadas pelo usuário
+        * Armazenamento completo de data e hora de cada transação
+        * Detalhamento por tipo (depósito/saque) e valor
+        * Visualização formatada para facilitar o acompanhamento financeiro
+        * Implementação pensada para melhorar significativamente a experiência 
+          do usuário, permitindo o rastreamento completo das atividades
+
+   - Interface do Usuário
+        * Efeito de digitação (PyFillet style) para apresentação elegante
+        * Limpeza automática de tela após login (implementado com auxílio de 
+          ferramentas de IA para garantir compatibilidade multiplataforma)
+        * Logo institucional em ASCII art para identidade visual
+
+================================================================================
+3. TECNOLOGIAS UTILIZADAS
+================================================================================
+
+A seguir estão listadas as principais tecnologias empregadas no desenvolvimento:
+
+   - Java 17+
+        * Linguagem principal de programação
+
+   - Java.util.Scanner
+        * Manipulação de entrada de dados via teclado
+
+   - Java.time
+        * Gerenciamento de datas e horários das transações
+        * Essencial para o registro preciso do histórico
+
+   - Java.util.ArrayList
+        * Estrutura de dados dinâmica para armazenamento do histórico
+        * Permite adição ilimitada de transações durante a sessão
+
+   - Java.io.Console (Opcional)
+        * Tratamento de entrada de dados no terminal
+
+================================================================================
+4. ESTRUTURA DO PROJETO
+================================================================================
+
+A organização dos arquivos do projeto segue a seguinte estrutura:
+
+   fiapBankATM/
+   │
+   ├── fiapBankATM.java          # Arquivo principal contendo todo o código fonte
+   │
+   ├── README.md                  # Documentação completa do projeto
+   │
+   ├── LICENSE                    # Arquivo de licença MIT
+   │
+   └── .gitignore                 # Arquivos ignorados pelo versionamento
+
+Estrutura interna do código:
+
+   - Classe Principal: fiapBankATM
+        * Método main(): Ponto de entrada do programa
+
+   - Classe Interna: Transacao (Diferencial)
+        * Criada especificamente para suportar a funcionalidade de histórico
+        * Representa cada movimentação financeira de forma estruturada
+        * Armazena tipo, valor, data e hora da transação
+        * Implementação orientada a objetos para melhor organização
+
+   - Métodos Auxiliares:
+        * digitar(): Efeito de digitação de texto
+        * limparTerminal(): Limpeza de tela multiplataforma (desenvolvido com 
+          suporte de ferramentas de IA para garantir funcionamento consistente)
+        * exibirLogo(): Exibição do logo institucional
+        * exibirHistorico(): Formatação e exibição do histórico (implementação 
+          original do autor para melhorar a experiência do usuário)
+================================================================================
+5. GUIA DE USO
+================================================================================
+
+5.1. CADASTRO INICIAL
+
+   Ao iniciar o programa, o usuário deverá:
+
+   1. Digitar seu nome completo
+      - O sistema extrairá automaticamente o primeiro nome
+      - A mensagem de boas-vindas será personalizada
+
+   2. Cadastrar uma senha forte com os seguintes requisitos:
+      - Mínimo de 8 caracteres
+      - Pelo menos 1 número (0-9)
+      - Pelo menos 1 letra maiúscula (A-Z)
+      - Pelo menos 1 caractere especial (!@#$%¨&*()\-_+=?><)
+
+5.2. PROCESSO DE LOGIN
+
+   Após o cadastro, o sistema solicitará autenticação:
+
+   1. O usuário terá 3 tentativas para acertar a senha
+   2. Caso acerte, o acesso será liberado
+   3. Caso erre 3 vezes, o sistema será bloqueado automaticamente
+   4. Após login bem-sucedido, a tela será limpa automaticamente (funcionalidade 
+      que contou com suporte técnico para garantir compatibilidade entre 
+      diferentes sistemas operacionais)
+
+5.3. MENU PRINCIPAL
+
+   O menu principal oferece as seguintes opções:
+
+   +----------------------------------------------------------------------+
+   | [1] CONSULTAR SALDO     - Visualiza o saldo atual da conta           |
+   | [2] FAZER DEPÓSITO      - Adiciona valor à conta                     |
+   | [3] FAZER SAQUE         - Remove valor da conta com validação        |
+   | [4] VER HISTÓRICO       - Mostra todas as transações realizadas      |
+   |                        * Funcionalidade adicional implementada       |
+   |                          para maior realismo e controle financeiro   |
+   | [5] SAIR                - Encerra o sistema                          |
+   +----------------------------------------------------------------------+
+
+5.4. HISTÓRICO DE TRANSAÇÕES (DESTAQUE)
+
+   O histórico foi implementado como um diferencial para tornar o sistema 
+   mais próximo de um caixa eletrônico real. Durante o desenvolvimento, 
+   identificou-se a necessidade de permitir que o usuário acompanhasse 
+   todas as movimentações realizadas, proporcionando maior transparência 
+   e controle financeiro.
+
+   O histórico apresenta as seguintes informações para cada transação:
+
+   - Tipo de operação (DEPÓSITO ou SAQUE)
+   - Valor movimentado (com sinal + ou -)
+   - Data e hora da transação (formato dd/MM/yyyy HH:mm:ss)
+   - Total de movimentações realizadas na sessão
+
+   Exemplo de saída do histórico:
+
+   +----------------------------------------------------------------------+
+   |                   HISTORICO DE MOVIMENTACOES                         |
+   +----------------------------------------------------------------------+
+   |                                                                      |
+   |   TIPO       VALOR          DATA E HORA                              |
+   |   -----------------------------------------                          |
+   |   DEPOSITO   + R$   100.00  15/01/2024 14:30:25                      |
+   |   SAQUE      - R$    50.00  15/01/2024 14:32:10                      |
+   |   DEPOSITO   + R$   200.00  15/01/2024 14:35:45                      |
+   |                                                                      |
+   |   Total de movimentacoes: 3                                          |
+   |                                                                      |
+   +----------------------------------------------------------------------+
+
+   Esta funcionalidade foi pensada para melhorar significativamente a 
+   experiência do usuário, permitindo o rastreamento completo das atividades 
+   bancárias durante a sessão.
+
+================================================================================
+6. RECURSOS DE SEGURANÇA
+================================================================================
+
+O sistema implementa diversas medidas de segurança:
+
+   - Validação de Senha Forte
+        * Garante que as senhas atendam aos requisitos mínimos
+        * Evita senhas fracas ou facilmente dedutíveis
+
+   - Limite de Tentativas de Login
+        * Permite apenas 3 tentativas consecutivas
+        * Bloqueia o acesso automaticamente após o limite
+
+   - Validação de Valores Monetários
+        * Impede depósitos com valores negativos ou zero
+        * Não permite saques acima do saldo disponível
+        * Verifica valores inválidos antes de processar
+
+   - Controle de Saldo
+        * Mantém o saldo sempre atualizado
+        * Impede operações que comprometam o saldo
+
+   - Registro de Transações com Data/Hora
+        * Todas as operações são registradas com timestamp
+        * Possibilita auditoria e rastreabilidade
+        * Histórico completo disponível para consulta
+
+================================================================================
+7. CARACTERÍSTICAS TÉCNICAS
+================================================================================
+
+7.1. EFEITO DE DIGITAÇÃO (PYFILET STYLE)
+
+   O sistema utiliza um método especializado para exibir textos com efeito de 
+   digitação, onde cada caractere aparece individualmente com um pequeno 
+   intervalo, simulando a digitação humana.
+
+   Implementação:
+   - Método: digitar(String texto, int delay)
+   - Parâmetros: texto a ser exibido, delay entre caracteres (ms)
+
+7.2. LIMPEZA DE TELA MULTIPLATAFORMA
+
+   O método limparTerminal() foi desenvolvido com auxílio de ferramentas de 
+   inteligência artificial para garantir compatibilidade entre diferentes 
+   sistemas operacionais. Ele detecta automaticamente o ambiente e executa 
+   o comando apropriado:
+
+   - Windows: cls (clear screen)
+   - Linux/Mac: códigos de escape ANSI (\033[H\033[2J)
+   - Fallback: 50 linhas em branco quando não suportado
+
+   Esta implementação assegura que a experiência de limpeza de tela funcione 
+   de forma consistente independentemente do ambiente de execução.
+
+7.3. LOGO INSTITUCIONAL
+
+   O logo do ATM FIAP é exibido em ASCII art, com os seguintes elementos:
+
+   - Nome do sistema em caracteres especiais
+   - Elementos decorativos para identidade visual
+   - Efeito de digitação para apresentação profissional
+
+7.4. SISTEMA DE HISTÓRICO (IMPLEMENTAÇÃO ORIGINAL)
+
+   A funcionalidade de histórico foi desenvolvida integralmente como um 
+   diferencial do projeto, utilizando:
+
+   - Classe Transacao: Estrutura orientada a objetos para representar 
+     cada movimentação
+   - ArrayList: Coleção dinâmica para armazenar múltiplas transações
+   - LocalDateTime: Captura precisa de data e hora de cada operação
+   - Formatação personalizada: Exibição organizada e de fácil leitura
+
+   Esta implementação demonstra preocupação com a experiência do usuário 
+   e a usabilidade do sistema, características essenciais em aplicações 
+   bancárias.
+
+7.5. TRATAMENTO DE EXCEÇÕES
+
+   O código inclui tratamento robusto de exceções:
+
+   - InterruptedException: Para métodos com Thread.sleep()
+   - Exception genérica: Para operações de sistema (limpeza de tela)
+   - Fallbacks: Para garantir funcionamento em diferentes ambientes
+
+================================================================================
+CRÉDITOS
+================================================================================
+
+   - Desenvolvimento Principal: L0b0sk - rm:561254
+ projeto avaliativo da matéria de Domain Driven Design -java
+================================================================================
+DOCUMENTAÇÃO GERADA EM: 01/04/2026
+================================================================================
