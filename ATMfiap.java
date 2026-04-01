@@ -52,17 +52,13 @@ public class ATMfiap {
      */
   public static void limparTerminal() {
         try {
-            // Verifica qual sistema operacional está sendo usado
-            if (System.getProperty("os.name").contains("Windows")) {
-                // Se for Windows, executa o comando "cls" (clear screen)
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                // Se for Linux ou Mac, usa código de escape ANSI para limpar
+            if (System.getProperty("os.name").contains("Windows")) {    // Verifica qual sistema operacional está sendo usado
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();   // Se for Windows, executa o comando "cls" (clear screen)
+            } else {    // Se for Linux ou Mac, usa código de escape ANSI para limpar
                 System.out.print("\033[H\033[2J");
                 System.out.flush(); // Força a execução imediata do comando
             }
-        } catch (Exception e) {
-            // Se falhar (ex: IDE não suporta), imprime várias linhas em branco como fallback
+        } catch (Exception e) { // Se falhar (ex: IDE não suporta), imprime várias linhas em branco como fallback
             for (int i = 0; i < 50; i++) {
                 System.out.println();
             }
