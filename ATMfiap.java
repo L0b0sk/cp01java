@@ -70,7 +70,7 @@ public class ATMfiap {
      * @throws InterruptedException Necessário para o Thread.sleep()
      */
 
-    public static void exibitLogo() throws InterruptedException{    // Array com cada linha do logo (arte ASCII)
+    public static void exibirLogo() throws InterruptedException{    // Array com cada linha do logo (arte ASCII)
         String[] logo = {
            "",
             "    █████╗ ████████╗███╗   ███╗    ███████╗██╗ █████╗ ██████╗ ",
@@ -96,6 +96,7 @@ public class ATMfiap {
      * Método para exibir o histórico de transações
      * @param historico ArrayList contendo todas as transações
      */
+
     public static void exibirHistorico(ArrayList<transacao> historico) {
         System.out.println("\n=============================================================");
         System.out.println("                    HISTORICO DE MOVIMENTACOES                 ");
@@ -123,4 +124,43 @@ public class ATMfiap {
         
         System.out.println("\n=============================================================");
     }
+
+    //Meteodo principal
+
+    /**
+     * Método principal onde o programa começa a executar
+     * @param args Argumentos da linha de comando (não usado)
+     * @throws InterruptedException Necessário para os métodos com Thread.sleep()
+     */
+
+    public static void main(String[] args) throws InterruptedException{
+
+        // ========== PARTE 1: EFEITO PYFILET E LOGO ==========
+        
+        limparTerminal();   // Limpa o terminal antes de começar a exibir qualquer coisa
+        
+        
+        digitar("=============================================================", 20);   // Exibe uma borda superior com efeito de digitação 
+        digitar("                   BANCO FIAP DIGITAL                      ", 20);    // Exibe o título do banco com efeito de digitação
+        digitar("=============================================================", 20);           // Exibe uma borda inferior com efeito de digitação
+        
+
+        Thread.sleep(500);  // Aguarda 500ms antes de continuar
+        
+        System.out.println();   // Pula uma linha
+        
+        digitar("Inicializando sistema", 40);   // Exibe texto de inicialização com efeito de digitação
+        digitar(".", 200);    // Exibe pontos com delay para simular carregamento
+        digitar(".", 200);
+        digitar(".", 200);
+        
+        System.out.println();   // Pula uma linha
+        
+        Thread.sleep(500);  // Aguarda 500ms
+         
+        exibirLogo();   // Chama o método que exibe o logo completo
+        
+        Thread.sleep(500);  // Aguarda 500ms após o logo
+    }
+    
 }
