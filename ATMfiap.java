@@ -27,16 +27,45 @@ public class ATMfiap {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             return dataHora.format(formatter);
         }
-        public String toString(){   //metodo para exibir a transaçao formatada
-            String sinal = tipo.equals("DEPOSITO") ?"+" : "-";  //setta o sinal de valor (+ para deposito e - para saque)
-            return String.format("%-10s %s R$ %8.2f %s",    //retorna as strings formatadas co tipo, volr e data/hora 
-                tipo, sinal, valor, getDataHotaFormatada());
-        }
-        // metodo getter para acessar os atributos
-        public String getTipo(){return  tipo;}
-        public double getValor(){return valor;}
-        public LocalDateTime getDataHora(){return dataHora;}
+         // Métodos getters para acessar os atributos
+        public String getTipo() { return tipo; }
+        public double getValor() { return valor; }
+        public LocalDateTime getDataHora() { return dataHora; }
+    }
 
-        
+    /**
+     * Método que exibe texto com efeito de digitação (PyFillet style)
+     * @param texto O texto que será exibido
+     * @param delay Tempo em milissegundos entre cada caractere
+     * @throws InterruptedException Necessário para o Thread.sleep()
+     */
+
+    public static void digitar(String texto, int delay) throws InterruptedException{    //converte a string em um array e percorre caractere por caractere
+        for(char c : texto.toCharArray()) {
+            System.out.print(c);    //imprime um caractere por vez
+            Thread.sleep(delay);    //espera um tem para imprimir o proximo caractere
+        }
+        System.out.println();
+    }
+    /**
+     * metodo para limpaar terminal tanto windows, mac, quanto no linux
+     */
+  public static void limparTerminal() {
+        try {
+            // Verifica qual sistema operacional está sendo usado
+            if (System.getProperty("os.name").contains("Windows")) {
+                // Se for Windows, executa o comando "cls" (clear screen)
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                // Se for Linux ou Mac, usa código de escape ANSI para limpar
+                System.out.print("\033[H\033[2J");
+                System.out.flush(); // Força a execução imediata do comando
+            }
+        } catch (Exception e) {
+            // Se falhar (ex: IDE não suporta), imprime várias linhas em branco como fallback
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
+        }
     }
 }
