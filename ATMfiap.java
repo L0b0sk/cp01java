@@ -91,4 +91,36 @@ public class ATMfiap {
         }
         Thread.sleep(800);  // Aguarda 800ms após mostrar todo o logo
     }
+
+       /**
+     * Método para exibir o histórico de transações
+     * @param historico ArrayList contendo todas as transações
+     */
+    public static void exibirHistorico(ArrayList<transacao> historico) {
+        System.out.println("\n=============================================================");
+        System.out.println("                    HISTORICO DE MOVIMENTACOES                 ");
+        System.out.println("=============================================================");
+        
+     
+        if (historico.isEmpty()) {     // Verifica se o histórico está vazio
+            System.out.println("\n  Nenhuma movimentacao realizada ainda.");
+            System.out.println("  Realize depositos ou saques para ver o historico.");
+        } else {
+            // Exibe o cabeçalho da tabela
+            System.out.println("\n  TIPO       VALOR          DATA E HORA");
+            System.out.println("  -----------------------------------------");
+            
+            // Percorre todas as transações do histórico
+            for (int i = 0; i < historico.size(); i++) {
+                transacao t = historico.get(i);
+                // Exibe cada transação formatada
+                System.out.println("  " + t.toString());
+            }
+            
+            // Exibe o rodapé com o total de transações
+            System.out.println("\n  Total de movimentacoes: " + historico.size());
+        }
+        
+        System.out.println("\n=============================================================");
+    }
 }
