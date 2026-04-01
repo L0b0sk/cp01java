@@ -1,5 +1,5 @@
 import java.util.Scanner;       // Importa a classe Scanner para ler dados do teclado
-import java.util.ArrayList; // Importa a classe ArrayList para armazenar o histórico de transações
+import java.util.ArrayList;     // Importa a classe ArrayList para armazenar o histórico de transações
 import java.time.LocalDateTime; // Importa as classes para trabalhar com data e hora
 import java.time.format.DateTimeFormatter;
 
@@ -63,5 +63,32 @@ public class ATMfiap {
                 System.out.println();
             }
         }
+    }
+
+        /**
+     * Método que exibe o logo do ATM FIAP com efeito de digitação
+     * @throws InterruptedException Necessário para o Thread.sleep()
+     */
+
+    public static void exibitLogo() throws InterruptedException{    // Array com cada linha do logo (arte ASCII)
+        String[] logo = {
+           "",
+            "    █████╗ ████████╗███╗   ███╗    ███████╗██╗ █████╗ ██████╗ ",
+            "   ██╔══██╗╚══██╔══╝████╗ ████║    ██╔════╝██║██╔══██╗██╔══██╗",
+            "   ███████║   ██║   ██╔████╔██║    █████╗  ██║███████║██████╔╝",
+            "   ██╔══██║   ██║   ██║╚██╔╝██║    ██╔══╝  ██║██╔══██║██╔═══╝ ",
+            "   ██║  ██║   ██║   ██║ ╚═╝ ██║    ██║     ██║██║  ██║██║     ",
+            "   ╚═╝  ╚═╝   ╚═╝   ╚═╝     ╚═╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝     ",
+            "",
+            "   =======================================================",
+            "   ============ SISTEMA DE AUTOMACAO BANCARIA ============",
+            "   =======================================================",
+            ""
+        };
+        for (String linha : logo) {  // Percorre cada linha do array de logo
+            digitar(linha, 3);      // Chama o método digitar para cada linha com delay de 3ms entre caracteres
+            Thread.sleep(30);   // Aguarda 30ms entre cada linha para dar efeito visual
+        }
+        Thread.sleep(800);  // Aguarda 800ms após mostrar todo o logo
     }
 }
