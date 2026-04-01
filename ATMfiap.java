@@ -36,5 +36,7 @@ public class ATMfiap {
         public String getTipo(){return  tipo;}
         public double getValor(){return valor;}
         public LocalDateTime getDataHora(){return dataHora;}
+
+        
     }
 }
