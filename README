@@ -1,18 +1,17 @@
+```
 DOCUMENTAÇÃO TÉCNICA
 SISTEMA ATM FIAP - AUTOMAÇÃO BANCÁRIA
 
-
 ÍNDICE
---------------------------------------------------------------------------------
 
-1.  DESCRIÇÃO DO PROJETO
-2.  FUNCIONALIDADES
-3.  TECNOLOGIAS UTILIZADAS
-4.  ESTRUTURA DO PROJETO
-6.  GUIA DE USO
-7.  RECURSOS DE SEGURANÇA
-8.  CARACTERÍSTICAS TÉCNICAS
-10. CONTRIBUIÇÃO
+1. DESCRIÇÃO DO PROJETO
+2. FUNCIONALIDADES
+3. TECNOLOGIAS UTILIZADAS
+4. ESTRUTURA DO PROJETO
+5. GUIA DE USO
+6. RECURSOS DE SEGURANÇA
+7. CARACTERÍSTICAS TÉCNICAS
+8. CONTRIBUIÇÃO
 
 ================================================================================
 1. DESCRIÇÃO DO PROJETO
@@ -30,6 +29,7 @@ bancário real.
 ================================================================================
 2. FUNCIONALIDADES
 ================================================================================
+
 O sistema contempla as seguintes funcionalidades:
 
    - Cadastro de Usuário
@@ -42,7 +42,7 @@ O sistema contempla as seguintes funcionalidades:
         * Bloqueio de acesso após tentativas excedidas
 
    - Operações Bancárias
-        * Consulta de saldo em tempo real
+        * Consulta de saldo em tempo real integrada com histórico de movimentações
         * Depósitos com validação de valores positivos
         * Saques com controle de saldo disponível
 
@@ -52,7 +52,7 @@ O sistema contempla as seguintes funcionalidades:
         * Registro automático de todas as movimentações realizadas pelo usuário
         * Armazenamento completo de data e hora de cada transação
         * Detalhamento por tipo (depósito/saque) e valor
-        * Visualização formatada para facilitar o acompanhamento financeiro
+        * Exibição integrada à consulta de saldo para facilitar o acompanhamento financeiro
         * Implementação pensada para melhorar significativamente a experiência 
           do usuário, permitindo o rastreamento completo das atividades
 
@@ -93,17 +93,17 @@ A organização dos arquivos do projeto segue a seguinte estrutura:
 
    fiapBankATM/
    │
-   ├── fiapBankATM.java          # Arquivo principal contendo todo o código fonte
+   ├── fiapATM.java                  # Arquivo principal contendo todo o código fonte
    │
-   ├── README.md                  # Documentação completa do projeto
+   ├── README.md                     # Documentação completa do projeto
    │
-   ├── LICENSE                    # Arquivo de licença MIT
+   ├── LICENSE                       # Arquivo de licença MIT
    │
-   └── .gitignore                 # Arquivos ignorados pelo versionamento
+   └── .gitignore                    # Arquivos ignorados pelo versionamento
 
 Estrutura interna do código:
 
-   - Classe Principal: fiapBankATM
+   - Classe Principal: fiapATM
         * Método main(): Ponto de entrada do programa
 
    - Classe Interna: Transacao (Diferencial)
@@ -117,8 +117,8 @@ Estrutura interna do código:
         * limparTerminal(): Limpeza de tela multiplataforma (desenvolvido com 
           suporte de ferramentas de IA para garantir funcionamento consistente)
         * exibirLogo(): Exibição do logo institucional
-        * exibirHistorico(): Formatação e exibição do histórico (implementação 
-          original do autor para melhorar a experiência do usuário)
+        * exibirSaldoComHistorico(): Exibição integrada do saldo e histórico de transações
+
 ================================================================================
 5. GUIA DE USO
 ================================================================================
@@ -153,13 +153,10 @@ Estrutura interna do código:
    O menu principal oferece as seguintes opções:
 
    +----------------------------------------------------------------------+
-   | [1] CONSULTAR SALDO     - Visualiza o saldo atual da conta           |
-   | [2] FAZER DEPÓSITO      - Adiciona valor à conta                     |
-   | [3] FAZER SAQUE         - Remove valor da conta com validação        |
-   | [4] VER HISTÓRICO       - Mostra todas as transações realizadas      |
-   |                        * Funcionalidade adicional implementada       |
-   |                          para maior realismo e controle financeiro   |
-   | [5] SAIR                - Encerra o sistema                          |
+   | [1] CONSULTAR SALDO E HISTORICO   - Visualiza saldo e movimentações  |
+   | [2] FAZER DEPÓSITO                - Adiciona valor à conta           |
+   | [3] FAZER SAQUE                   - Remove valor da conta com validação |
+   | [4] SAIR                          - Encerra o sistema                |
    +----------------------------------------------------------------------+
 
 5.4. HISTÓRICO DE TRANSAÇÕES (DESTAQUE)
@@ -169,6 +166,10 @@ Estrutura interna do código:
    identificou-se a necessidade de permitir que o usuário acompanhasse 
    todas as movimentações realizadas, proporcionando maior transparência 
    e controle financeiro.
+
+   Diferentemente de versões anteriores onde o histórico era acessado 
+   separadamente, agora ele é exibido automaticamente junto com a consulta 
+   de saldo, proporcionando uma visão completa das movimentações em um único local.
 
    O histórico apresenta as seguintes informações para cada transação:
 
@@ -180,8 +181,12 @@ Estrutura interna do código:
    Exemplo de saída do histórico:
 
    +----------------------------------------------------------------------+
-   |                   HISTORICO DE MOVIMENTACOES                         |
+   |                    CONSULTA DE SALDO                                 |
    +----------------------------------------------------------------------+
+   |                                                                      |
+   |   SALDO ATUAL: R$ 250.00                                             |
+   |                                                                      |
+   |   ULTIMAS MOVIMENTACOES                                              |
    |                                                                      |
    |   TIPO       VALOR          DATA E HORA                              |
    |   -----------------------------------------                          |
@@ -195,7 +200,7 @@ Estrutura interna do código:
 
    Esta funcionalidade foi pensada para melhorar significativamente a 
    experiência do usuário, permitindo o rastreamento completo das atividades 
-   bancárias durante a sessão.
+   bancárias durante a sessão de forma integrada e intuitiva.
 
 ================================================================================
 6. RECURSOS DE SEGURANÇA
@@ -223,7 +228,7 @@ O sistema implementa diversas medidas de segurança:
    - Registro de Transações com Data/Hora
         * Todas as operações são registradas com timestamp
         * Possibilita auditoria e rastreabilidade
-        * Histórico completo disponível para consulta
+        * Histórico completo disponível na consulta de saldo
 
 ================================================================================
 7. CARACTERÍSTICAS TÉCNICAS
@@ -271,6 +276,7 @@ O sistema implementa diversas medidas de segurança:
    - ArrayList: Coleção dinâmica para armazenar múltiplas transações
    - LocalDateTime: Captura precisa de data e hora de cada operação
    - Formatação personalizada: Exibição organizada e de fácil leitura
+   - Método exibirSaldoComHistorico(): Exibição unificada de saldo e histórico
 
    Esta implementação demonstra preocupação com a experiência do usuário 
    e a usabilidade do sistema, características essenciais em aplicações 
@@ -289,7 +295,9 @@ CRÉDITOS
 ================================================================================
 
    - Desenvolvimento Principal: L0b0sk - rm:561254
- projeto avaliativo da matéria de Domain Driven Design -java
+     Projeto avaliativo da matéria de Domain Driven Design - Java
+
 ================================================================================
-DOCUMENTAÇÃO GERADA EM: 01/04/2026
+DOCUMENTAÇÃO GERADA EM: 02/04/2026
 ================================================================================
+```
