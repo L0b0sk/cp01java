@@ -4,7 +4,7 @@ import java.time.LocalDateTime; // Importa as classes para trabalhar com data e 
 import java.time.format.DateTimeFormatter;
 
 
-public class fiapATMbancaria{   // Declaração da classe principal do programa
+public class fiapATM{   // Declaração da classe principal do programa
     
     // ==================== CLASSE INTERNA PARA TRANSAÇÕES ====================
     
@@ -108,12 +108,19 @@ public class fiapATMbancaria{   // Declaração da classe principal do programa
     /**
      * Método para exibir o histórico de transações
      * @param historico ArrayList contendo todas as transações
+     * @param historico Arraylist contendo tods as transações 
      */
 
-    public static void exibirHistorico(ArrayList<Transacao> historico) {
+    public static void exibirSaldoComHistorico(double saldo, ArrayList <Transacao>historico) {
         System.out.println("\n=============================================================");
-        System.out.println("                    HISTORICO DE MOVIMENTACOES                 ");
+        System.out.println("                    CONSULTA DE SALDO                        ");
         System.out.println("=============================================================");
+
+        System.out.printf("\n SALDO ATUAL: R$ %.2f%n",saldo);
+
+        System.out.println("\n-------------------------------------------------------------");
+        System.out.println("                    ULTIMAS MOVIMENTACOES                    ");
+        System.out.println("-------------------------------------------------------------");
         
         if (historico.isEmpty()) {  // Verifica se o histórico está vazio
             System.out.println("\n  Nenhuma movimentacao realizada ainda.");
@@ -284,11 +291,10 @@ public class fiapATMbancaria{   // Declaração da classe principal do programa
             System.out.println("\n-------------------------------------------------------------");
             System.out.println("                      MENU PRINCIPAL                      ");
             System.out.println("-------------------------------------------------------------");
-            System.out.println("  [1]  CONSULTAR SALDO                                   ");
+            System.out.println("  [1]  CONSULTAR SALDO E HISTORICO                                   ");
             System.out.println("  [2]  FAZER DEPOSITO                                    ");
             System.out.println("  [3]  FAZER SAQUE                                       ");
-            System.out.println("  [4]  VER HISTORICO                                     ");
-            System.out.println("  [5]  SAIR                                              ");
+            System.out.println("  [4]  SAIR                                              ");
             System.out.println("-------------------------------------------------------------");
             System.out.print("Escolha uma opcao: ");
             
@@ -296,7 +302,7 @@ public class fiapATMbancaria{   // Declaração da classe principal do programa
             
             switch (opcao) {    // Switch para executar a ação conforme a opção escolhida
                 case 1: // Consultar Saldo
-                    System.out.printf("\nSaldo atual: R$ %.2f%n", saldo);   // Exibe o saldo atual formatado com 2 casas decimais
+                    exibirSaldoComHistorico(saldo, historico);  
                     break;
                 
                 case 2: // Fazer Depósito
@@ -337,12 +343,7 @@ public class fiapATMbancaria{   // Declaração da classe principal do programa
                         System.out.printf("Novo saldo: R$ %.2f%n", saldo);
                     }
                     break;
-                
-                case 4: // Ver Histórico
-                    exibirHistorico(historico); // Chama o método para exibir o histórico de transações
-                    break;
-                
-                case 5: // Sair
+                case 4: // Sair
                     System.out.println("\n-------------------------------------------------------------");
                     System.out.println("    O Banco FIAP agradece sua preferencia!                ");
                     System.out.println("              Volte sempre!                                ");
