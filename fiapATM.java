@@ -302,7 +302,7 @@ public class fiapATM{   // Declaração da classe principal do programa
             
             switch (opcao) {    // Switch para executar a ação conforme a opção escolhida
                 case 1: // Consultar Saldo
-                    exibirSaldoComHistorico(saldo, historico);  
+                    exibirSaldoComHistorico(saldo, historico);
                     break;
                 
                 case 2: // Fazer Depósito
@@ -354,7 +354,7 @@ public class fiapATM{   // Declaração da classe principal do programa
                     System.out.println("Opcao invalida! Por favor, escolha uma opcao entre 1 e 5.");
             }
             
-        } while (opcao != 5); // Continua enquanto o usuário não escolher sair (opção 5)
+        } while (opcao != 4); // Continua enquanto o usuário não escolher sair (opção 5)
         
         scanner.close();    // Fecha o scanner para liberar recursos
         
