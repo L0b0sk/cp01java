@@ -57,7 +57,7 @@ O sistema contempla as seguintes funcionalidades:
           do usuário, permitindo o rastreamento completo das atividades
 
    - Interface do Usuário
-        * Efeito de digitação (PyFillet style) para apresentação elegante
+        * Efeito de digitação PyFillet style para apresentação elegante
         * Limpeza automática de tela após login (implementado com auxílio de 
           ferramentas de IA para garantir compatibilidade multiplataforma)
         * Logo institucional em ASCII art para identidade visual
@@ -106,7 +106,7 @@ Estrutura interna do código:
    - Classe Principal: fiapATM
         * Método main(): Ponto de entrada do programa
 
-   - Classe Interna: Transacao (Diferencial)
+   - Classe Interna: Transacao 
         * Criada especificamente para suportar a funcionalidade de histórico
         * Representa cada movimentação financeira de forma estruturada
         * Armazena tipo, valor, data e hora da transação
@@ -152,14 +152,14 @@ Estrutura interna do código:
 
    O menu principal oferece as seguintes opções:
 
-   +----------------------------------------------------------------------+
-   | [1] CONSULTAR SALDO E HISTORICO   - Visualiza saldo e movimentações  |
-   | [2] FAZER DEPÓSITO                - Adiciona valor à conta           |
+   +-------------------------------------------------------------------------+
+   | [1] CONSULTAR SALDO E HISTORICO   - Visualiza saldo e movimentações     |
+   | [2] FAZER DEPÓSITO                - Adiciona valor à conta              |
    | [3] FAZER SAQUE                   - Remove valor da conta com validação |
-   | [4] SAIR                          - Encerra o sistema                |
-   +----------------------------------------------------------------------+
+   | [4] SAIR                          - Encerra o sistema                   |
+   +-------------------------------------------------------------------------+
 
-5.4. HISTÓRICO DE TRANSAÇÕES (DESTAQUE)
+5.4. HISTÓRICO DE TRANSAÇÕES
 
    O histórico foi implementado como um diferencial para tornar o sistema 
    mais próximo de um caixa eletrônico real. Durante o desenvolvimento, 
@@ -242,7 +242,7 @@ O sistema implementa diversas medidas de segurança:
 
    Implementação:
    - Método: digitar(String texto, int delay)
-   - Parâmetros: texto a ser exibido, delay entre caracteres (ms)
+   - Parâmetros: texto a ser exibido, delay entre caracteres em ms
 
 7.2. LIMPEZA DE TELA MULTIPLATAFORMA
 
@@ -251,7 +251,7 @@ O sistema implementa diversas medidas de segurança:
    sistemas operacionais. Ele detecta automaticamente o ambiente e executa 
    o comando apropriado:
 
-   - Windows: cls (clear screen)
+   - Windows: cls
    - Linux/Mac: códigos de escape ANSI (\033[H\033[2J)
    - Fallback: 50 linhas em branco quando não suportado
 
