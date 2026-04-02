@@ -4,7 +4,7 @@ import java.time.LocalDateTime; // Importa as classes para trabalhar com data e 
 import java.time.format.DateTimeFormatter;
 
 
-public class fiapATMbancaria{   // Declaração da classe principal do programa
+public class fiapATM{   // Declaração da classe principal do programa
     
     // ==================== CLASSE INTERNA PARA TRANSAÇÕES ====================
     
